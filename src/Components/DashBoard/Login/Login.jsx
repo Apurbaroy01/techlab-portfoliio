@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate, } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../../../Context/AuthContext';
+import useAxois from '../../../Hooks/useAxois';
 
 
 const Login = () => {
     const { signIn } = useContext(AuthContext)
+    const axiosSecure = useAxois();
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
 
@@ -17,11 +19,25 @@ const Login = () => {
 
 
     const onSubmit = (data) => {
-        console.log(data);
+        
+        const userInfo={
+            email:data.email,
+            role:"user",
+            login_time: new Date().toISOString(),
+        };
+
+        console.log(userInfo);
 
         signIn(data.email, data.password)
             .then((result) => {
                 console.log(result.user)
+
+                axiosSecure.post('/users',userInfo)
+                .then(res=>{
+                    console.log(res.data)
+                })
+
+
                 navigate("/dashboard")
             })
             .catch((error) => {

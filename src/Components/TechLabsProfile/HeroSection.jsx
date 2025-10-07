@@ -3,7 +3,7 @@ import { FaStar, FaCheckCircle, FaBuilding, FaArrowRight } from "react-icons/fa"
 
 const HeroSection = () => {
     return (
-        <section className="relative min-h-screen bg-transparent text-white py-24 mt-16 flex flex-col justify-between overflow-hidden">
+        <section className="relative min-h-screen bg-transparent text-white py-24 mt-10 flex flex-col justify-between overflow-hidden">
             {/* Glow / Background Overlay */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.15),_transparent_60%)] z-0"></div>
 

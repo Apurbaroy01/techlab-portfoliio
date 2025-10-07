@@ -1,23 +1,66 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Navbar from '../Share/Navbar/NavBar';
-import Footer from '../Share/Footer/Footer';
-import Backround from '../Components/TechLabsProfile/Backround';
+
+import { NavLink, Outlet } from 'react-router-dom';
+import { FaHome, FaBox, FaMoneyBillWave, FaTruck, FaUserEdit, FaUserClock, FaUserCheck } from "react-icons/fa";
 
 const DashboardLayout = () => {
-    return (
-        <div className="flex flex-col min-h-screen">
-            {/* Content area */}
-            <Backround className="flex-1 flex flex-col">
-                <Navbar />
-                
-                <main className="flex-1">
-                    <Outlet />
-                </main>
-            </Backround>
 
-            {/* Footer always at the bottom */}
-            <Footer />
+    const linkClasses = ({ isActive }) =>
+        `flex items-center gap-3 px-4 py-2 rounded-lg transition-colors duration-200
+         ${isActive ? 'bg-blue-100 font-semibold text-blue-700' : 'hover:bg-gray-200'}`;
+
+    return (
+        <div className="drawer lg:drawer-open">
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content flex flex-col ">
+                {/* Page content here */}
+                <div className="drawer">
+                    <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content flex flex-col ">
+                        {/* Navbar */}
+                        <div className="navbar bg-base-300 w-full lg:hidden">
+                            <div className="flex-none lg:hidden">
+                                <label htmlFor="my-drawer-2" aria-label="open sidebar" className="btn btn-square btn-ghost ">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        className="inline-block h-6 w-6 stroke-current"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        ></path>
+                                    </svg>
+                                </label>
+                            </div>
+
+                        </div>
+                        {/* Page content here */}
+                        <Outlet></Outlet>
+                    </div>
+
+                </div>
+            </div>
+            <div className="drawer-side">
+                <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                    {/* Sidebar content here */}
+                    <h1 className='text-3xl '>TechLabs</h1>
+
+
+                    <div className="flex flex-col mt-6 space-y-2">
+                        <NavLink to="/" className={linkClasses}>
+                            <FaHome /> Home
+                        </NavLink>
+
+                
+                    </div>
+
+
+                </ul>
+            </div>
         </div>
     );
 };
