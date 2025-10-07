@@ -32,8 +32,8 @@ const Projects = () => {
     return (
         <section id="projects" className="py-20 bg-transparent dark:from-gray-900 dark:to-gray-800">
             <div className="container mx-auto px-4">
-                <h2 className=" text-center text-4xl md:text-5xl font-extrabold text-accent  dark:text-white mb-12">
-                    Products
+                <h2 className="lilita-one-regular text-center text-4xl md:text-5xl font-extrabold text-accent  dark:text-white mb-12">
+                  ~ Products ~
                 </h2>
                 <h2 className=" text-center text-2xl md:text-3xl font-extrabold text-accent  dark:text-white mb-12">
                     Exclusive Premium Products

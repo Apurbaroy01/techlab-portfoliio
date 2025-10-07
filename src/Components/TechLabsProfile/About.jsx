@@ -1,54 +1,55 @@
 import { FaBullseye, FaEye, FaUsers, FaClock } from "react-icons/fa";
+import TeamMember from "./TeamMember";
 
 const About = () => {
-    const teamMembers = [
-        {
-            name: "Rohan Kazi",
-            role: "Laravel Developer",
-            image: "https://i.ibb.co.com/dYf5M5n/037de061-8c0c-40b3-885f-297f46b2ce48.jpg",
-        },
-        {
-            name: "Sophie Blake",
-            role: "UI/UX Designer",
-            image: "https://randomuser.me/api/portraits/women/44.jpg",
-        },
-        {
-            name: "Ethan Brooks",
-            role: "Project Manager",
-            image: "https://randomuser.me/api/portraits/men/45.jpg",
-        },
-        {
-            name: "Olivia White",
-            role: "Marketing Specialist",
-            image: "https://randomuser.me/api/portraits/women/65.jpg",
-        },
-        {
-            name: "Noah Martinez",
-            role: "Mobile App Developer",
-            image: "https://randomuser.me/api/portraits/men/53.jpg",
-        },
-        {
-            name: "Emma Johnson",
-            role: "Quality Assurance Engineer",
-            image: "https://randomuser.me/api/portraits/women/50.jpg",
-        },
-        {
-            name: "Liam Nguyen",
-            role: "DevOps Engineer",
-            image: "https://randomuser.me/api/portraits/men/36.jpg",
-        },
-        {
-            name: "Chloe Smith",
-            role: "Business Analyst",
-            image: "https://randomuser.me/api/portraits/women/72.jpg",
-        },
-    ];
+    // const teamMembers = [
+    //     {
+    //         name: "Rohan Kazi",
+    //         role: "Laravel Developer",
+    //         image: "https://i.ibb.co.com/dYf5M5n/037de061-8c0c-40b3-885f-297f46b2ce48.jpg",
+    //     },
+    //     {
+    //         name: "Sophie Blake",
+    //         role: "UI/UX Designer",
+    //         image: "https://randomuser.me/api/portraits/women/44.jpg",
+    //     },
+    //     {
+    //         name: "Ethan Brooks",
+    //         role: "Project Manager",
+    //         image: "https://randomuser.me/api/portraits/men/45.jpg",
+    //     },
+    //     {
+    //         name: "Olivia White",
+    //         role: "Marketing Specialist",
+    //         image: "https://randomuser.me/api/portraits/women/65.jpg",
+    //     },
+    //     {
+    //         name: "Noah Martinez",
+    //         role: "Mobile App Developer",
+    //         image: "https://randomuser.me/api/portraits/men/53.jpg",
+    //     },
+    //     {
+    //         name: "Emma Johnson",
+    //         role: "Quality Assurance Engineer",
+    //         image: "https://randomuser.me/api/portraits/women/50.jpg",
+    //     },
+    //     {
+    //         name: "Liam Nguyen",
+    //         role: "DevOps Engineer",
+    //         image: "https://randomuser.me/api/portraits/men/36.jpg",
+    //     },
+    //     {
+    //         name: "Chloe Smith",
+    //         role: "Business Analyst",
+    //         image: "https://randomuser.me/api/portraits/women/72.jpg",
+    //     },
+    // ];
     return (
         <section className="py-20 bg-transparent text-white" id="about">
             <div className="container mx-auto px-6">
                 {/* Heading */}
                 <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-accent mb-4">
+                    <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4">
                         About TechLab IT
                     </h2>
                     <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
@@ -112,9 +113,11 @@ const About = () => {
                 </div>
 
                 {/* Team Section */}
-                <div className="mt-20" data-aos="fade-up">
-                    <h3 className="text-3xl md:text-4xl font-bold text-center mb-10 text-accent">
-                        Meet Our Expert Team
+                <TeamMember></TeamMember>
+
+                {/* <div className="mt-20" data-aos="fade-up">
+                    <h3 className="lilita-one-regular text-3xl md:text-4xl font-bold text-center mb-10 text-accent">
+                       ~ Meet Our Expert Team ~
                     </h3>
 
                     <section className="py-20 bg-transparent text-white">
@@ -142,7 +145,7 @@ const About = () => {
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> */}
             </div>
         </section>
     );

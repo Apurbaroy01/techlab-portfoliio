@@ -29,7 +29,7 @@ const Navbar = () => {
                 </div>
                 <div className=" text-xl p-1">
                     <span  className='relative text-5xl font-bold text-teal-500'>T</span>
-                    <p className='absolute font-semibold top-8 left-10 text-2xl '>ECHLAB</p>
+                    <p className='absolute font-semibold top-8 left-10 text-2xl '>ECHLABS</p>
                 </div>
             </div>
 

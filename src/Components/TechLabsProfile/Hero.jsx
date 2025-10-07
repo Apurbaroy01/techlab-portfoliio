@@ -21,8 +21,8 @@ const Hero = () => {
                 gyroscope={true}
                 className="relative z-10 text-center max-w-2xl px-6"
             >
-                <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg" data-aos="zoom-in">
-                    TechLabs IT
+                <h1 className="lilita-one-regular text-5xl md:text-8xl  mb-6 drop-shadow-lg" data-aos="zoom-in">
+                    TechLabs
                 </h1>
 
                 <p className="text-gray-200 text-lg md:text-xl mb-8 leading-relaxed" data-aos="zoom-in-up">
