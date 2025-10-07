@@ -1,6 +1,6 @@
 
 import { useForm } from 'react-hook-form';
-import { useLocation, } from 'react-router-dom';
+import { useLocation, useNavigate, } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../../../Context/AuthContext';
 
@@ -8,6 +8,7 @@ import AuthContext from '../../../Context/AuthContext';
 const Login = () => {
     const { signIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
 
 
 
@@ -21,6 +22,7 @@ const Login = () => {
         signIn(data.email, data.password)
             .then((result) => {
                 console.log(result.user)
+                navigate("/dashboard")
             })
             .catch((error) => {
                 console.log(error.message)
