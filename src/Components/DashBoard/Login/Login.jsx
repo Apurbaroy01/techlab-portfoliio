@@ -1,12 +1,15 @@
 
 import { useForm } from 'react-hook-form';
 import { useLocation, } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../../Context/AuthContext';
 
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext)
     const { register, handleSubmit } = useForm();
-  
- 
+
+
 
     const location = useLocation();
     console.log(location)
@@ -15,15 +18,13 @@ const Login = () => {
     const onSubmit = (data) => {
         console.log(data);
 
-        // signIn(data.email, data.password)
-        //     .then((result) => {
-        //         console.log(result.user)
-        //         navigate(from)
-
-        //     })
-        //     .catch((error) => {
-        //         console.log(error.message)
-        //     })
+        signIn(data.email, data.password)
+            .then((result) => {
+                console.log(result.user)
+            })
+            .catch((error) => {
+                console.log(error.message)
+            })
     };
 
     return (
@@ -57,7 +58,7 @@ const Login = () => {
                             placeholder="Enter your password"
                             className="input input-bordered w-full rounded-xl"
                         />
-                       
+
                     </div>
 
                     {/* Button */}
@@ -69,9 +70,9 @@ const Login = () => {
                     </button>
                 </form>
 
-                
 
-               
+
+
             </div>
         </div>
     );

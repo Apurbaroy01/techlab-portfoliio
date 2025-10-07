@@ -9,6 +9,7 @@ import router from './Router/Router';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import AuthProvider from './Context/AuthProvider';
 // ..
 AOS.init({
   duration: 1000,
@@ -18,6 +19,8 @@ AOS.init({
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )

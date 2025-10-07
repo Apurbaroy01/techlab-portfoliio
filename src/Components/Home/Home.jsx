@@ -1,7 +1,7 @@
 
 import About from '../TechLabsProfile/About';
 import Backround from '../TechLabsProfile/Backround';
-import Hero from '../TechLabsProfile/Hero';
+import HeroSection from '../TechLabsProfile/HeroSection';
 import Projects from '../TechLabsProfile/Projects';
 import Services from '../TechLabsProfile/Services';
 import TechStack from '../TechLabsProfile/TechStack';
@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div>
             <Backround>
-                <Hero></Hero>
+                <HeroSection></HeroSection>
                 <About></About>
                 <Services></Services>
                 <TechStack></TechStack>
