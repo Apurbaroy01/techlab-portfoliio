@@ -1,13 +1,17 @@
 
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
 
 const Navbar = () => {
-
+    const { user } = useAuth();
 
 
 
     const Navitem = <>
+        {
+            user && <li><NavLink to="/dashboard">Admin</NavLink></li>
+        }
         <li><NavLink to="#">Home</NavLink></li>
         <li><NavLink to="#">Contact</NavLink></li>
         <li><NavLink to="/location">Location</NavLink></li>
@@ -28,7 +32,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className=" text-xl p-1">
-                    <span  className='relative text-5xl font-bold text-teal-500'>T</span>
+                    <span className='relative text-5xl font-bold text-teal-500'>T</span>
                     <p className='absolute font-semibold top-8 left-10 text-2xl '>ECHLABS</p>
                 </div>
             </div>

@@ -33,7 +33,7 @@ const TeamMember = () => {
     };
 
     return (
-        <div className="mt-24 relative" data-aos="fade-up">
+        <div className="mt-24 w-11/12 mx-auto relative" data-aos="fade-up">
             {/* Title */}
             <h3 className="lilita-one-regular text-4xl md:text-5xl font-bold text-center mb-20 
                  bg-gradient-to-r from-purple-500 via-pink-400 to-blue-400 text-transparent bg-clip-text drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]">

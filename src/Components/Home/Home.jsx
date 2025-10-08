@@ -10,17 +10,19 @@ import TechStack from '../TechLabsProfile/TechStack';
 
 const Home = () => {
     return (
-        <div>
+        
             <Backround>
-                <HeroSection></HeroSection>
+                <div className='w-11/12 mx-auto'>
+                    <HeroSection></HeroSection>
                 <About></About>
                 <Services></Services>
                 <TechStack></TechStack>
                 <Projects></Projects>
+                </div>
             </Backround>
 
 
-        </div>
+    
     );
 };
 

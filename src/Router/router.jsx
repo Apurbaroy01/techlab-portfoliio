@@ -6,6 +6,9 @@ import Login from "../Components/DashBoard/Login/Login";
 import AuthLayout from "../Layout/AuthLayout";
 import DashboardLayout from "../Layout/DashboardLayout";
 import DashBoard from "../Components/DashBoard/DashBoard";
+import UserTable from "../Components/DashBoard/UserTable/UserTable";
+import EditHeroSection from "../Components/DashBoard/EditHeroSection/EditHeroSection";
+import ProfileSettings from "../Components/DashBoard/ProfileSettings/ProfileSettings";
 
 
 const router = createBrowserRouter([
@@ -37,12 +40,27 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/",
+        path: "/dashboard",
         Component: DashboardLayout,
         children: [
             {
-                path:"dashboard",
+                index: true,
                 Component: DashBoard,
+                
+            },
+            {
+                path:"user",
+                Component: UserTable,
+                
+            },
+            {
+                path:"hero",
+                Component: EditHeroSection,
+                
+            },
+            {
+                path:"profileSetting",
+                Component: ProfileSettings,
                 
             },
            

@@ -32,7 +32,7 @@ const Login = () => {
             .then((result) => {
                 console.log(result.user)
 
-                axiosSecure.post('/users',userInfo)
+                axiosSecure.patch('/users',userInfo)
                 .then(res=>{
                     console.log(res.data)
                 })
