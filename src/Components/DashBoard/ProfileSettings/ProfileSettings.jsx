@@ -1,141 +1,195 @@
-import React, { useState } from "react";
-import { FaUserEdit, FaEnvelope, FaInfoCircle, FaCamera, FaSave } from "react-icons/fa";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { FaCamera, FaSave, FaLock } from "react-icons/fa";
+import useAuth from "../../../Hooks/useAuth";
+import axios from "axios";
 
 const ProfileSettings = () => {
-    const [profile, setProfile] = useState({
-        name: "Apurba Roy",
-        email: "apurba@example.com",
-        bio: "MERN Stack Developer passionate about building modern web applications.",
-        image: "",
-    });
+    const { updatePass, user, updatauser } = useAuth();
 
-    // image preview
-    const handleImageChange = (e) => {
+    const [profileName, setProfileName] = useState(user?.displayName || "");
+    const [preview, setPreview] = useState(user?.photoURL || null);
+
+    useEffect(() => {
+        setProfileName(user?.displayName || "");
+        setPreview(user?.photoURL || null);
+    }, [user]);
+
+    // ✅ Profile Picture Upload
+    const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setProfile({ ...profile, image: imageUrl });
+        if (!file) return;
+
+        const tempUrl = URL.createObjectURL(file);
+        setPreview(tempUrl);
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        try {
+            const res = await axios.post(
+                "https://api.imgbb.com/1/upload?key=3e6bb97e2f9920f1db504fde9535a137",
+                formData
+            );
+            const imageUrl = res.data?.data?.display_url;
+            if (imageUrl) setPreview(imageUrl);
+        } catch (err) {
+            console.error("Image upload error:", err);
         }
     };
 
-    // form submit
-    const handleSubmit = (e) => {
+    // ✅ Save Name & Photo
+    const handleProfileSave = async () => {
+        if (!user) return;
+
+        try {
+            await updatauser({
+                displayName: profileName,
+                photoURL: preview || user.photoURL,
+            });
+
+            Swal.fire({
+                icon: "success",
+                title: "Profile Updated!",
+                text: "Your name and profile picture have been updated.",
+                timer: 1500,
+                showConfirmButton: false,
+            });
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Update Failed",
+                text: err.message,
+            });
+        }
+    };
+
+    // ✅ Password Change
+    const handlePasswordChange = async (e) => {
         e.preventDefault();
-        Swal.fire({
-            icon: "success",
-            title: "Profile Updated!",
-            text: "Your profile has been successfully updated.",
-            confirmButtonColor: "#2563eb",
-        });
+        const currentPassword = e.target.currentPassword.value;
+        const newPassword = e.target.newPassword.value;
+        if (!user) return;
+
+        try {
+            await updatePass(currentPassword, newPassword);
+            Swal.fire({
+                icon: "success",
+                title: "Password Updated",
+                text: "Your password has been updated successfully!",
+            });
+            e.target.reset();
+        } catch (err) {
+            Swal.fire({
+                icon: "error",
+                title: "Password Not Updated",
+                text: err.message,
+            });
+        }
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-base-200 p-6">
-            <div className="bg-white w-full max-w-2xl rounded-2xl shadow-xl border border-gray-200 p-8">
-                <h2 className="text-3xl font-bold text-center text-primary mb-8">
-                    👤 Profile Settings
-                </h2>
+        <div className="max-w-3xl mx-auto mt-12 p-8 bg-white dark:bg-gray-900  dark:border-gray-700">
+            <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-gray-100">
+                Profile Settings
+            </h2>
 
-                {/* Profile Image */}
-                <div className="flex flex-col items-center mb-8 relative">
-                    <div className="avatar">
-                        <div className="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img
-                                src={
-                                    profile.image ||
-                                    "https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                                }
-                                alt="Profile"
-                            />
-                        </div>
-                    </div>
-
+            {/* Profile Picture */}
+            <div className="flex flex-col items-center mb-10">
+                <div className="relative w-36 h-36 shadow-2xl shadow-blue-400 rounded-full ">
+                    <img
+                        src={preview || "https://via.placeholder.com/150"}
+                        alt="Profile"
+                        className="w-full h-full rounded-full object-cover border-4 border-primary shadow-lg"
+                    />
                     <label
-                        htmlFor="imageUpload"
-                        className="absolute bottom-0 right-[42%] bg-primary text-white p-3 rounded-full cursor-pointer shadow-lg hover:bg-primary-focus transition-all duration-200"
+                        htmlFor="upload"
+                        className="absolute bottom-0 right-0 bg-primary text-white p-3 rounded-full cursor-pointer shadow-lg hover:bg-primary-focus transition"
                     >
-                        <FaCamera className="text-lg" />
-                        <input
-                            type="file"
-                            id="imageUpload"
-                            className="hidden"
-                            accept="image/*"
-                            onChange={handleImageChange}
-                        />
+                        <FaCamera />
                     </label>
+                    <input
+                        type="file"
+                        id="upload"
+                        className="hidden"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                    />
+                </div>
+            </div>
+
+            {/* Name & Email */}
+            <div className="mb-10 space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="label font-semibold text-gray-700 dark:text-gray-200">
+                            Full Name
+                        </label>
+                        <input
+                            type="text"
+                            value={profileName}
+                            onChange={(e) => setProfileName(e.target.value)}
+                            className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
+                        />
+                    </div>
+                    <div>
+                        <label className="label font-semibold text-gray-700 dark:text-gray-200">
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            value={user?.email || ""}
+                            disabled
+                            className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-300 cursor-not-allowed"
+                        />
+                    </div>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Name */}
-                    <div>
-                        <label className="label">
-                            <span className="label-text font-semibold">Full Name</span>
-                        </label>
-                        <div className="input input-bordered flex items-center gap-3">
-                            <FaUserEdit className="text-gray-500" />
-                            <input
-                                type="text"
-                                className="grow focus:outline-none"
-                                placeholder="Your Name"
-                                value={profile.name}
-                                onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                        <label className="label">
-                            <span className="label-text font-semibold">Email Address</span>
-                        </label>
-                        <div className="input input-bordered flex items-center gap-3">
-                            <FaEnvelope className="text-gray-500" />
-                            <input
-                                type="email"
-                                className="grow focus:outline-none"
-                                placeholder="you@example.com"
-                                value={profile.email}
-                                onChange={(e) =>
-                                    setProfile({ ...profile, email: e.target.value })
-                                }
-                                required
-                            />
-                        </div>
-                    </div>
-
-                    {/* Bio */}
-                    <div>
-                        <label className="label">
-                            <span className="label-text font-semibold">Bio</span>
-                        </label>
-                        <div className="input input-bordered flex items-start gap-3 py-3">
-                            <FaInfoCircle className="text-gray-500 mt-1" />
-                            <textarea
-                                className="grow resize-none focus:outline-none"
-                                rows="3"
-                                placeholder="Write something about yourself..."
-                                value={profile.bio}
-                                onChange={(e) =>
-                                    setProfile({ ...profile, bio: e.target.value })
-                                }
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    {/* Buttons */}
-                    <div className="flex justify-center mt-6">
-                        <button
-                            type="submit"
-                            className="btn btn-primary w-full text-white font-semibold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform duration-200"
-                        >
-                            <FaSave /> Save Changes
-                        </button>
-                    </div>
-                </form>
+                <button
+                    onClick={handleProfileSave}
+                    className="btn btn-primary w-full mt-4 flex items-center justify-center gap-3 text-lg font-semibold"
+                >
+                    <FaSave /> Save Profile
+                </button>
             </div>
+
+            {/* Divider */}
+            <div className="divider text-gray-500 dark:text-gray-400">Change Password</div>
+
+            {/* Password Change */}
+            <form onSubmit={handlePasswordChange} className="space-y-5">
+                <div>
+                    <label className="label font-semibold text-gray-700 dark:text-gray-200">
+                        Current Password
+                    </label>
+                    <input
+                        type="password"
+                        name="currentPassword"
+                        placeholder="Enter current password"
+                        className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
+                        required
+                    />
+                </div>
+                <div>
+                    <label className="label font-semibold text-gray-700 dark:text-gray-200">
+                        New Password
+                    </label>
+                    <input
+                        type="password"
+                        name="newPassword"
+                        placeholder="Enter new password"
+                        className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
+                        required
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    className="btn btn-secondary w-full flex items-center justify-center gap-3 text-lg font-semibold"
+                >
+                    <FaLock /> Update Password
+                </button>
+            </form>
         </div>
     );
 };

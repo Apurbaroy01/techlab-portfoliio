@@ -1,6 +1,7 @@
 
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
+import TecLabs from '../../Components/TechLabsProfile/TecLabs';
 
 
 const Navbar = () => {
@@ -32,8 +33,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className=" text-xl p-1">
-                    <span className='relative text-5xl font-bold text-teal-500'>T</span>
-                    <p className='absolute font-semibold top-8 left-10 text-2xl '>ECHLABS</p>
+                    <span className='relative text-3xl font-bold text-teal-500'><TecLabs></TecLabs></span>
+                    
                 </div>
             </div>
 

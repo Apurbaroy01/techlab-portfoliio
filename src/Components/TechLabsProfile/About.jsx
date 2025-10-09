@@ -1,5 +1,6 @@
 import { FaBullseye, FaEye, FaUsers, FaClock } from "react-icons/fa";
 import TeamMember from "./TeamMember";
+import TecLabs from "./TecLabs";
 
 const About = () => {
     // const teamMembers = [
@@ -49,8 +50,9 @@ const About = () => {
             <div className="container mx-auto px-6">
                 {/* Heading */}
                 <div className="text-center mb-16" data-aos="fade-up">
-                    <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4">
-                        About TechLab IT
+                    <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4 flex justify-center items-center gap-3">
+                        <p>About</p>
+                        <TecLabs></TecLabs>
                     </h2>
                     <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
                         At TechLab IT, we combine innovative technology, expertise, and a customer-centric approach to deliver cutting-edge digital solutions. Our team of dedicated professionals is here to help you grow and evolve in the ever-changing digital landscape.

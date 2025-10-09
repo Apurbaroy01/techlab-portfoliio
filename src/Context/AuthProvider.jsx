@@ -1,40 +1,59 @@
 import { useEffect, useState } from "react";
-import AuthContext from "./AuthContext"
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import AuthContext from "./AuthContext";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut, updatePassword, reauthenticateWithCredential, EmailAuthProvider, updateProfile } from "firebase/auth";
 import auth from "../Firebase/Firebase";
-
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-
     const signIn = (email, password) => {
-        setLoading(true)
-        return signInWithEmailAndPassword(auth , email, password)
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    const updatauser = (UpateProfile) => {
+        return updateProfile(auth.currentUser, UpateProfile)
+    }
+
+
+
+    // ✅ Secure update password with reauthentication
+    const updatePass = async (currentPassword, newPassword) => {
+        if (!auth.currentUser) {
+            return;
+        }
+
+        const user = auth.currentUser;
+        const credential = EmailAuthProvider.credential(user.email, currentPassword);
+
+        // Reauthenticate first
+        await reauthenticateWithCredential(user, credential);
+
+        // Then update password
+        return updatePassword(user, newPassword);
     };
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            console.log("User:", user || "NO User")
-            setUser(user)
-            setLoading(false)
+            console.log("User:", user || "NO User");
+            setUser(user);
+            setLoading(false);
         });
         return unsubscribe;
-    }, [])
+    }, []);
 
-
-    const logOut = () => {
-        return signOut(auth)
-    }
+    const logOut = () => signOut(auth);
 
     const authInfo = {
         signIn,
         user,
         logOut,
         loading,
+        updatePass,
+        updatauser,
+    };
 
-    }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

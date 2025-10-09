@@ -1,5 +1,6 @@
 import Tilt from "react-parallax-tilt";
 import { FaStar, FaCheckCircle, FaBuilding, FaArrowRight } from "react-icons/fa";
+import TecLabs from "./TecLabs";
 
 const HeroSection = () => {
     return (
@@ -21,7 +22,7 @@ const HeroSection = () => {
                         Creative Agency
                     </p>
                     <h1 className="lilita-one-regular text-5xl md:text-8xl mb-6 drop-shadow-lg" data-aos="zoom-in">
-                        TechLabs
+                        <TecLabs></TecLabs>
                     </h1>
 
                     <p className="text-gray-200 text-lg md:text-xl mb-8 leading-relaxed" data-aos="zoom-in-up">
