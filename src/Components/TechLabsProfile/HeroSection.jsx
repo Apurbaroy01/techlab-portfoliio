@@ -1,8 +1,15 @@
 import Tilt from "react-parallax-tilt";
 import { FaStar, FaCheckCircle, FaBuilding, FaArrowRight } from "react-icons/fa";
 import TecLabs from "./TecLabs";
+import useData from "../../Hooks/useData";
+
 
 const HeroSection = () => {
+    const { heroData } = useData();
+    console.log(heroData);
+
+   
+
     return (
         <section className="relative min-h-screen bg-transparent text-white py-24 mt-5 flex flex-col justify-between overflow-hidden">
             {/* Glow / Background Overlay */}
@@ -26,27 +33,26 @@ const HeroSection = () => {
                     </h1>
 
                     <p className="text-gray-200 text-lg md:text-xl mb-8 leading-relaxed" data-aos="zoom-in-up">
-                        We engineer intelligent digital experiences — blending design, tech,
-                        and innovation to accelerate your business growth.
+                        {heroData?.subtitle}
                     </p>
 
                     {/* Stats Section */}
                     <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-8 backdrop-blur-2xl bg-white/10 border border-white/10 rounded-3xl p-5 shadow-xl">
                         <div className="p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
                             <FaStar className="text-purple-400 text-4xl mb-3" />
-                            <h2 className="text-4xl font-bold text-white">13+</h2>
+                            <h2 className="text-4xl font-bold text-white">{heroData?.years}+</h2>
                             <p className="text-sm text-gray-300 mt-1">Years Of Experience</p>
                         </div>
 
                         <div className="p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
                             <FaCheckCircle className="text-indigo-400 text-4xl mb-3" />
-                            <h2 className="text-4xl font-bold text-white">74k+</h2>
+                            <h2 className="text-4xl font-bold text-white">{heroData?.projects}+</h2>
                             <p className="text-sm text-gray-300 mt-1">Projects Completed</p>
                         </div>
 
                         <div className="p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
                             <FaBuilding className="text-blue-400 text-4xl mb-3" />
-                            <h2 className="text-4xl font-bold text-white">9.2k+</h2>
+                            <h2 className="text-4xl font-bold text-white">{heroData?.companies}+</h2>
                             <p className="text-sm text-gray-300 mt-1">Trusted Companies</p>
                         </div>
                     </div>

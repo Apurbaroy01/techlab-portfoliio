@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const TeamMember = () => {
   const teamMembers = [
-    { name: "Rohan Kazi", role: "Laravel Developer", image: "https://i.ibb.co.com/dYf5M5n/037de061-8c0c-40b3-885f-297f46b2ce48.jpg" },
+    { name: "Rohan Kazi", role: "Laravel Developer", image: "https://i.ibb.co.com/pBThBLfw/037de061-8c0c-40b3-885f-297f46b2ce48.jpg" },
     { name: "Sophie Blake", role: "UI/UX Designer", image: "https://randomuser.me/api/portraits/women/44.jpg" },
     { name: "Ethan Brooks", role: "Project Manager", image: "https://randomuser.me/api/portraits/men/45.jpg" },
     { name: "Olivia White", role: "Marketing Specialist", image: "https://randomuser.me/api/portraits/women/65.jpg" },
