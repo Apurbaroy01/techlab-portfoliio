@@ -9,6 +9,8 @@ import DashBoard from "../Components/DashBoard/DashBoard";
 import UserTable from "../Components/DashBoard/UserTable/UserTable";
 import EditHeroSection from "../Components/DashBoard/EditHeroSection/EditHeroSection";
 import ProfileSettings from "../Components/DashBoard/ProfileSettings/ProfileSettings";
+import teamMemberEdit from "../Components/DashBoard/TeamMemberEdit/teamMemberEdit";
+
 
 
 const router = createBrowserRouter([
@@ -61,6 +63,11 @@ const router = createBrowserRouter([
             {
                 path:"profileSetting",
                 Component: ProfileSettings,
+                
+            },
+            {
+                path:"teamMemberEdit",
+                Component: teamMemberEdit,
                 
             },
            
