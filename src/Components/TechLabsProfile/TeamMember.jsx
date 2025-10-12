@@ -2,18 +2,33 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { motion } from "framer-motion";
+import useAxois from "../../Hooks/useAxois";
+import { useQuery } from "@tanstack/react-query";
 
 const TeamMember = () => {
-  const teamMembers = [
-    { name: "Rohan Kazi", role: "Laravel Developer", image: "https://i.ibb.co.com/pBThBLfw/037de061-8c0c-40b3-885f-297f46b2ce48.jpg" },
-    { name: "Sophie Blake", role: "UI/UX Designer", image: "https://randomuser.me/api/portraits/women/44.jpg" },
-    { name: "Ethan Brooks", role: "Project Manager", image: "https://randomuser.me/api/portraits/men/45.jpg" },
-    { name: "Olivia White", role: "Marketing Specialist", image: "https://randomuser.me/api/portraits/women/65.jpg" },
-    { name: "Noah Martinez", role: "Mobile App Developer", image: "https://randomuser.me/api/portraits/men/53.jpg" },
-    { name: "Emma Johnson", role: "QA Engineer", image: "https://randomuser.me/api/portraits/women/50.jpg" },
-    { name: "Liam Nguyen", role: "DevOps Engineer", image: "https://randomuser.me/api/portraits/men/36.jpg" },
-    { name: "Chloe Smith", role: "Business Analyst", image: "https://randomuser.me/api/portraits/women/72.jpg" },
-  ];
+
+  const axiosInstance = useAxois();
+
+  const { data: teamMembers = [] } = useQuery({
+    queryKey: ['teamMembers'],
+    queryFn: async () => {
+      const res = await axiosInstance.get('/teamMembers');
+      return res.data;
+    }
+  });
+  console.log(teamMembers);
+  
+
+  // const teamMembers = [
+  //   { name: "Rohan Kazi", role: "Laravel Developer", image: "https://i.ibb.co.com/pBThBLfw/037de061-8c0c-40b3-885f-297f46b2ce48.jpg" },
+  //   { name: "Sophie Blake", role: "UI/UX Designer", image: "https://randomuser.me/api/portraits/women/44.jpg" },
+  //   { name: "Ethan Brooks", role: "Project Manager", image: "https://randomuser.me/api/portraits/men/45.jpg" },
+  //   { name: "Olivia White", role: "Marketing Specialist", image: "https://randomuser.me/api/portraits/women/65.jpg" },
+  //   { name: "Noah Martinez", role: "Mobile App Developer", image: "https://randomuser.me/api/portraits/men/53.jpg" },
+  //   { name: "Emma Johnson", role: "QA Engineer", image: "https://randomuser.me/api/portraits/women/50.jpg" },
+  //   { name: "Liam Nguyen", role: "DevOps Engineer", image: "https://randomuser.me/api/portraits/men/36.jpg" },
+  //   { name: "Chloe Smith", role: "Business Analyst", image: "https://randomuser.me/api/portraits/women/72.jpg" },
+  // ];
 
   const settings = {
     dots: false,
@@ -59,7 +74,7 @@ const TeamMember = () => {
                   {/* 🖼️ Image */}
                   <div className="relative">
                     <img
-                      src={member.image}
+                      src={member.url}
                       alt={member.name}
                       className="w-full h-44 object-cover rounded-t-2xl transition-transform duration-700 group-hover:scale-110"
                     />

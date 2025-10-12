@@ -98,7 +98,7 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/hero" className={linkClasses}>
                                 <FaChessQueen /> Hero Edit
                             </NavLink>
-                            <NavLink to="/dashboard/hero" className={linkClasses}>
+                            <NavLink to="/dashboard/projectEdit" className={linkClasses}>
                                 <SiPolymerproject /> Project
                             </NavLink>
                             <NavLink to="/dashboard/hero" className={linkClasses}>
