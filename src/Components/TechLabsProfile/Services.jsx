@@ -59,7 +59,7 @@ const Services = () => {
         {/* Heading */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4">
-           ~ Our Services ~
+            Our Services
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto leading-relaxed">
             We provide a full range of IT services designed to help your

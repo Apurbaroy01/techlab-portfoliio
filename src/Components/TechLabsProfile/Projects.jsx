@@ -1,141 +1,103 @@
-import { FaGithub, FaExternalLinkAlt, FaFileAlt } from 'react-icons/fa';
-
-const projects = [
-    {
-        id: 1,
-        title: 'Portfolio Website',
-        image: 'https://via.placeholder.com/400x250.png?text=Portfolio+Website',
-        description:
-            'A responsive personal portfolio website built with React and TailwindCSS.',
-        technologies: ['React', 'TailwindCSS', 'AOS'],
-        live: 'https://your-live-link.com',
-        github: 'https://github.com/your-repo',
-        caseStudy: '#',
-    },
-    {
-        id: 2,
-        title: 'E-commerce App',
-        image: 'https://via.placeholder.com/400x250.png?text=E-commerce+App',
-        description:
-            'A full-stack e-commerce web application with product listings, cart, and payment integration.',
-        technologies: ['React', 'Node.js', 'MongoDB', 'TailwindCSS'],
-        live: 'https://ecommerce-demo.com',
-        github: 'https://github.com/your-repo',
-        caseStudy: '#',
-    },
-    {
-        id: 3,
-        title: 'Blog Platform',
-        image: 'https://via.placeholder.com/400x250.png?text=Blog+Platform',
-        description:
-            'A modern blog platform with user authentication and markdown editor.',
-        technologies: ['React', 'Firebase', 'TailwindCSS'],
-        live: '#',
-        github: '#',
-        caseStudy: '#',
-    },
-    {
-        id: 4,
-        title: 'Task Manager App',
-        image: 'https://via.placeholder.com/400x250.png?text=Task+Manager',
-        description:
-            'A task management app to track daily tasks with notifications.',
-        technologies: ['React', 'Node.js', 'Express', 'TailwindCSS'],
-        live: '#',
-        github: '#',
-        caseStudy: '#',
-    },
-];
+import { useQuery } from '@tanstack/react-query';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import useAxois from '../../Hooks/useAxois';
 
 const Projects = () => {
-    return (
-        <section id="projects" className="py-20 bg-transparent dark:bg-gray-900">
-            <div className="container mx-auto px-4">
-                <h2 className="text-center lilita-one-regular text-3xl md:text-4xl font-extrabold text-accent mb-4">
-                    ~ Products ~
-                </h2>
-                <p className="text-center text-base md:text-lg text-white dark:text-gray-300 mb-12">
-                    Exclusive Premium Projects & Work Showcase
-                </p>
+    const axiosInstance = useAxois();
 
-                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    const { data: projects = [] } = useQuery({
+        queryKey: ['projects'],
+        queryFn: async () => {
+            const res = await axiosInstance.get('/projects');
+            return res.data;
+        },
+    });
+    console.log(projects);
+
+    return (
+        <section id="projects" className="py-20 bg-transparent dark:from-gray-900 dark:to-gray-800">
+            <div className="container mx-auto px-4">
+                {/* 🔹 Section Header */}
+                <div className="text-center mb-12">
+                    <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4">
+                        Projects
+                    </h2>
+                    <p className="text-white dark:text-gray-300 text-lg mt-3">
+                        Some of my best works — creative, responsive & performance optimized.
+                    </p>
+                </div>
+
+                {/* 🔹 Project Grid */}
+                <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project) => (
                         <div
-                            key={project.id}
-                            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-md overflow-hidden transform transition-transform hover:-translate-y-2 hover:shadow-xl"
-                            data-aos="fade-right"
+                            key={project._id}
+                            className="relative group bg-white/10 dark:bg-gray-900/50 rounded-2xl border border-gray-300 dark:border-gray-700 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden transition-transform transform hover:-translate-y-2 duration-300"
+                            data-aos="fade-up"
                         >
-                            <div className="relative group">
+                            {/* 🔸 Project Image */}
+                            <div className="relative overflow-hidden">
                                 <img
-                                    src={project.image}
+                                    src={project.url}
                                     alt={project.title}
-                                    className="w-full h-40 object-cover rounded-t-xl group-hover:scale-105 transition-transform duration-300"
+                                    className="w-full h-52 object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-xl"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
 
-                            <div className="p-4 flex flex-col justify-between h-full">
+                            {/* 🔸 Project Content */}
+                            <div className="p-6 flex flex-col justify-between h-full bg-white/5 backdrop-blur-md">
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                                    <h3 className="text-2xl font-semibold text-white dark:text-white mb-2">
                                         {project.title}
                                     </h3>
-                                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                                    <p className="text-white dark:text-gray-300 text-sm mb-4 line-clamp-3">
                                         {project.description}
                                     </p>
 
-                                    <div className="mb-3">
-                                        <h4 className="font-medium text-gray-700 dark:text-gray-200 text-xs">
-                                            Technologies:
-                                        </h4>
-                                        <ul className="flex flex-wrap gap-1 mt-1">
-                                            {project.technologies.map((tech, index) => (
-                                                <li
-                                                    key={index}
-                                                    className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 py-0.5 rounded-full text-xs font-medium"
-                                                >
-                                                    {tech}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
+                                    {/* 🔸 Links */}
+                                    <div className="flex gap-3 mt-auto">
 
-                                <div className="flex gap-3 mt-2 text-xl">
-                                    {project.live && (
                                         <a
                                             href={project.live}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-500 transition-colors"
-                                            title="Live Demo"
+                                            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white rounded-full bg-gradient-to-r from-pink-500 to-amber-500 hover:opacity-90 transition"
                                         >
-                                            <FaExternalLinkAlt />
+                                            <FaExternalLinkAlt /> Live Demo
                                         </a>
-                                    )}
-                                    {project.github && (
+
                                         <a
                                             href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-800 hover:text-black dark:text-white dark:hover:text-gray-300 transition-colors"
-                                            title="GitHub"
+                                            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 border border-gray-400 dark:border-gray-600 rounded-full hover:bg-gray-800 hover:text-white transition"
                                         >
-                                            <FaGithub />
+                                            <FaGithub /> Code
                                         </a>
-                                    )}
-                                    {project.caseStudy && (
-                                        <a
-                                            href={project.caseStudy}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-500 transition-colors"
-                                            title="Case Study"
-                                        >
-                                            <FaFileAlt />
-                                        </a>
-                                    )}
+                                    </div>
+
+
+
+                                    {/* 🔸 Tech Stack */}
+                                    {/* {project.tech && (
+                                        <div className="flex flex-wrap gap-2 mb-4">
+                                            {project.tech.map((t, i) => (
+                                                <span
+                                                    key={i}
+                                                    className="text-xs bg-gradient-to-r from-amber-500/20 to-pink-500/20 text-amber-400 px-2 py-1 rounded-full font-medium border border-amber-400/20"
+                                                >
+                                                    {t}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    )} */}
                                 </div>
+
+
                             </div>
+
+
                         </div>
                     ))}
                 </div>

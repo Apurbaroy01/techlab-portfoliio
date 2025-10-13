@@ -1,11 +1,12 @@
 import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { FaUserEdit, FaSave, FaCamera } from "react-icons/fa";
+import { FaUserEdit, FaSave, FaCamera, FaExternalLinkAlt } from "react-icons/fa";
 
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import useAxois from "../../../../Hooks/useAxois";
+import { SiPolymerproject } from "react-icons/si";
 
 
 const EditProjectSection = () => {
@@ -15,14 +16,14 @@ const EditProjectSection = () => {
     const [preview, setPreview] = useState();
     const fileInputRef = useRef(null);
 
-    const { data: teamMembers = [], refetch } = useQuery({
-        queryKey: ['teamMembers'],
+    const { data: projects = [], refetch } = useQuery({
+        queryKey: ['projects'],
         queryFn: async () => {
-            const res = await axiosInstance.get('/teamMembers');
+            const res = await axiosInstance.get('/projects');
             return res.data;
         }
     })
-    console.log(teamMembers);
+    console.log(projects);
 
     const { register, handleSubmit, reset } = useForm();
 
@@ -59,12 +60,13 @@ const EditProjectSection = () => {
         const formData = {
             url: preview,
             name: data.name,
-            role: data.role
+            description: data.description,
+            live: data.live,
         }
 
 
         try {
-            const res = await axiosInstance.post('/teamMembers', formData);
+            const res = await axiosInstance.post('/projects', formData);
             if (res.data.insertedId) {
                 refetch();
                 Swal.fire({
@@ -94,7 +96,7 @@ const EditProjectSection = () => {
                 {/* Header */}
                 <div className="flex flex-col items-center mb-8">
                     <div className="bg-gradient-to-r from-pink-600 to-blue-500 text-white rounded-full p-4 shadow-lg">
-                        <FaUserEdit size={26} />
+                        <SiPolymerproject size={26} />
                     </div>
                     <h2 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-blue-500 mt-3">
                         Edit Project’s Details
@@ -161,6 +163,17 @@ const EditProjectSection = () => {
                                 className="input input-bordered w-full rounded-xl border-gray-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300 shadow-sm placeholder-gray-400"
                             />
                         </div>
+                        {/* 🧑‍💻 live */}
+                        <div className="form-control w-1/2 mx-auto">
+                            <label className="label font-semibold text-gray-700 text-sm md:text-base">
+                                Live Link
+                            </label>
+                            <input
+                                {...register("live")}
+                                placeholder="Enter project live link"
+                                className="input input-bordered w-full rounded-xl border-gray-300 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all duration-300 shadow-sm placeholder-gray-400"
+                            />
+                        </div>
 
                         {/* 💾 Submit */}
                         <div className="flex justify-center mt-4">
@@ -178,19 +191,22 @@ const EditProjectSection = () => {
                 </form>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-                {teamMembers.map(member => (
+                {projects.map(project => (
                     <div
-                        key={member._id}
+                        key={project._id}
                         className="bg-white rounded-xl shadow-lg p-4 flex flex-col items-center space-y-2"
                     >
                         <img
-                            src={member.url}
-                            alt={member.name}
-                            className="w-24 h-24 rounded-full object-cover shadow-md"
+                            src={project.url}
+                            alt={project.name}
+                            className="w-11/12 h-40 object-cover rounded-2xl shadow-md"
                         />
-                        <h3 className="font-bold">{member.name}</h3>
-                        <p className="text-gray-500">{member.role}</p>
+                        <h3 className="font-bold">{project.name}</h3>
+                        <p className="text-gray-500">{project.description}</p>
                         <div className="flex gap-2 mt-2">
+                            <button className="btn btn-sm btn-primary flex items-center gap-1">
+                                <FaExternalLinkAlt /> live
+                            </button>
                             <button className="btn btn-sm btn-primary flex items-center gap-1">
                                 <FaUserEdit /> Edit
                             </button>
@@ -198,9 +214,9 @@ const EditProjectSection = () => {
                                 className="btn btn-sm btn-error flex items-center gap-1"
                                 onClick={async () => {
                                     try {
-                                        await axiosInstance.delete(`/teamMembers/${member._id}`);
+                                        await axiosInstance.delete(`/projects/${project._id}`);
                                         refetch();
-                                        Swal.fire("Deleted!", `${member.name} deleted.`, "success");
+                                        Swal.fire("Deleted!", `${project.name} deleted.`, "success");
 
                                     } catch (err) {
                                         console.error(err);

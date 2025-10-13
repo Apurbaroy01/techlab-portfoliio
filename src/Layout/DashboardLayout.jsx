@@ -107,7 +107,7 @@ const DashboardLayout = () => {
                             <NavLink to="/dashboard/teamMemberEdit" className={linkClasses}>
                                 <FaUserGroup /> Team Members
                             </NavLink>
-                            <NavLink to="/dashboard/hero" className={linkClasses}>
+                            <NavLink to="/dashboard/serviceEdit" className={linkClasses}>
                                 <FaHandHoldingHeart /> Services
                             </NavLink>
                             <NavLink to="/dashboard/profileSetting" className={linkClasses}>
