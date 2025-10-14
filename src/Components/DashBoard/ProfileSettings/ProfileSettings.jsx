@@ -89,107 +89,109 @@ const ProfileSettings = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto mt-12 p-8 bg-white dark:bg-gray-900  dark:border-gray-700">
-            <h2 className="text-3xl font-bold text-center mb-10 text-gray-800 dark:text-gray-100">
-                Profile Settings
-            </h2>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-pink-50 to-purple-100 p-6">
+            <div className="max-w-3xl w-full bg-white/80 backdrop-blur-lg border border-white/30 shadow-2xl rounded-3xl p-8">
+                <h2 className="text-3xl font-bold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-pink-500">
+                    Profile Settings
+                </h2>
 
-            {/* Profile Picture */}
-            <div className="flex flex-col items-center mb-10">
-                <div className="relative w-36 h-36 shadow-2xl shadow-blue-400 rounded-full ">
-                    <img
-                        src={preview || "https://via.placeholder.com/150"}
-                        alt="Profile"
-                        className="w-full h-full rounded-full object-cover border-4 border-primary shadow-lg"
-                    />
-                    <label
-                        htmlFor="upload"
-                        className="absolute bottom-0 right-0 bg-primary text-white p-3 rounded-full cursor-pointer shadow-lg hover:bg-primary-focus transition"
-                    >
-                        <FaCamera />
-                    </label>
-                    <input
-                        type="file"
-                        id="upload"
-                        className="hidden"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                    />
+                {/* Profile Picture */}
+                <div className="flex flex-col items-center mb-10">
+                    <div className="relative w-36 h-36 shadow-2xl shadow-blue-400 rounded-full">
+                        <img
+                            src={preview || "https://via.placeholder.com/150"}
+                            alt="Profile"
+                            className="w-full h-full rounded-full object-cover border-4 border-white shadow-lg"
+                        />
+                        <label
+                            htmlFor="upload"
+                            className="absolute bottom-0 right-0 bg-gradient-to-r from-blue-500 to-pink-500 text-white p-3 rounded-full cursor-pointer shadow-lg hover:scale-105 transition-transform"
+                        >
+                            <FaCamera />
+                        </label>
+                        <input
+                            type="file"
+                            id="upload"
+                            className="hidden"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                        />
+                    </div>
                 </div>
-            </div>
 
-            {/* Name & Email */}
-            <div className="mb-10 space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name & Email */}
+                <div className="mb-10 space-y-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="label font-semibold text-gray-700">
+                                Full Name
+                            </label>
+                            <input
+                                type="text"
+                                value={profileName}
+                                onChange={(e) => setProfileName(e.target.value)}
+                                className="input input-bordered w-full bg-white border-gray-300 focus:ring-2 focus:ring-blue-300 rounded-xl"
+                            />
+                        </div>
+                        <div>
+                            <label className="label font-semibold text-gray-700">
+                                Email Address
+                            </label>
+                            <input
+                                type="email"
+                                value={user?.email || ""}
+                                disabled
+                                className="input input-bordered w-full bg-gray-100 border-gray-300 text-gray-500 cursor-not-allowed rounded-xl"
+                            />
+                        </div>
+                    </div>
+
+                    <button
+                        onClick={handleProfileSave}
+                        className="btn bg-gradient-to-r from-blue-600 to-pink-500 text-white w-full mt-4 flex items-center justify-center gap-3 text-lg font-semibold hover:scale-105 transition-transform rounded-full"
+                    >
+                        <FaSave /> Save Profile
+                    </button>
+                </div>
+
+                {/* Divider */}
+                <div className="divider text-gray-500">Change Password</div>
+
+                {/* Password Change */}
+                <form onSubmit={handlePasswordChange} className="space-y-5">
                     <div>
-                        <label className="label font-semibold text-gray-700 dark:text-gray-200">
-                            Full Name
+                        <label className="label font-semibold text-gray-700">
+                            Current Password
                         </label>
                         <input
                             type="text"
-                            value={profileName}
-                            onChange={(e) => setProfileName(e.target.value)}
-                            className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
+                            name="currentPassword"
+                            placeholder="Enter current password"
+                            className="input input-bordered w-full bg-white border-gray-300 focus:ring-2 focus:ring-blue-300 rounded-xl"
+                            required
                         />
                     </div>
                     <div>
-                        <label className="label font-semibold text-gray-700 dark:text-gray-200">
-                            Email Address
+                        <label className="label font-semibold text-gray-700">
+                            New Password
                         </label>
                         <input
-                            type="email"
-                            value={user?.email || ""}
-                            disabled
-                            className="input input-bordered w-full bg-gray-100 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-300 cursor-not-allowed"
+                            type="text"
+                            name="newPassword"
+                            placeholder="Enter new password"
+                            className="input input-bordered w-full bg-white border-gray-300 focus:ring-2 focus:ring-pink-300 rounded-xl"
+                            required
                         />
                     </div>
-                </div>
 
-                <button
-                    onClick={handleProfileSave}
-                    className="btn btn-primary w-full mt-4 flex items-center justify-center gap-3 text-lg font-semibold"
-                >
-                    <FaSave /> Save Profile
-                </button>
+                    <button
+                        type="submit"
+                        className="btn bg-gradient-to-r from-purple-500 to-blue-500 text-white w-full flex items-center justify-center gap-3 text-lg font-semibold hover:scale-105 transition-transform rounded-full"
+                    >
+                        <FaLock /> Update Password
+                    </button>
+                </form>
             </div>
-
-            {/* Divider */}
-            <div className="divider text-gray-500 dark:text-gray-400">Change Password</div>
-
-            {/* Password Change */}
-            <form onSubmit={handlePasswordChange} className="space-y-5">
-                <div>
-                    <label className="label font-semibold text-gray-700 dark:text-gray-200">
-                        Current Password
-                    </label>
-                    <input
-                        type="password"
-                        name="currentPassword"
-                        placeholder="Enter current password"
-                        className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
-                        required
-                    />
-                </div>
-                <div>
-                    <label className="label font-semibold text-gray-700 dark:text-gray-200">
-                        New Password
-                    </label>
-                    <input
-                        type="password"
-                        name="newPassword"
-                        placeholder="Enter new password"
-                        className="input input-bordered w-full bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-600 focus:ring-primary focus:border-primary text-gray-800 dark:text-gray-100"
-                        required
-                    />
-                </div>
-
-                <button
-                    type="submit"
-                    className="btn btn-secondary w-full flex items-center justify-center gap-3 text-lg font-semibold"
-                >
-                    <FaLock /> Update Password
-                </button>
-            </form>
         </div>
     );
 };

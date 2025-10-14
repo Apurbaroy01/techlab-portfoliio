@@ -55,7 +55,7 @@ const EditHeroSection = () => {
         );
 
     return (
-        <div className="max-w-4xl mx-auto my-12 bg-gradient-to-br from-blue-50 via-white to-purple-50 rounded-3xl shadow-xl backdrop-blur-md border border-white/40 p-1">
+        <div className="max-w-4xl mx-auto my-12 bg-white/5 backdrop-blur-md  rounded-3xl shadow-xl  border border-white/40 p-1">
             <div className="bg-white/80 rounded-3xl p-8 md:p-10">
                 {/* Header */}
                 <div className="flex flex-col items-center mb-10">
@@ -99,7 +99,7 @@ const EditHeroSection = () => {
 
                     <div className="form-control md:col-span-2">
                         <label className="label font-semibold text-gray-600">
-                            Subtitle
+                            Description
                         </label>
                         <textarea
                             {...register("subtitle")}

@@ -51,7 +51,7 @@ const UserTable = () => {
 
     return (
         <div className="overflow-x-auto">
-            <table className="table w-full bg-base-100 shadow-lg rounded-2xl">
+            <table className="table w-full bg-white/5 backdrop-blur-md text-white shadow-lg rounded-2xl">
                 {/* Table Head */}
                 <thead className="bg-base-200 text-base font-semibold text-gray-700">
                     <tr>
