@@ -1,6 +1,7 @@
 
 import About from '../TechLabsProfile/About';
 import Backround from '../TechLabsProfile/Backround';
+import Contact from '../TechLabsProfile/Contact';
 import HeroSection from '../TechLabsProfile/HeroSection';
 import Projects from '../TechLabsProfile/Projects';
 import Services from '../TechLabsProfile/Services';
@@ -18,6 +19,7 @@ const Home = () => {
                 <Services></Services>
                 <TechStack></TechStack>
                 <Projects></Projects>
+                <Contact></Contact>
             </div>
         </Backround>
 

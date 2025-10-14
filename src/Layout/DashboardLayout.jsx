@@ -5,6 +5,7 @@ import {
     FaSignOutAlt,
     FaChessQueen,
     FaHandHoldingHeart,
+    FaCommentDots,
 } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
@@ -109,6 +110,9 @@ const DashboardLayout = () => {
                             </NavLink>
                             <NavLink to="/dashboard/serviceEdit" className={linkClasses}>
                                 <FaHandHoldingHeart /> Services
+                            </NavLink>
+                            <NavLink to="/dashboard/message" className={linkClasses}>
+                                <FaCommentDots  /> message
                             </NavLink>
                             <NavLink to="/dashboard/profileSetting" className={linkClasses}>
                                 <IoMdSettings /> Setting
