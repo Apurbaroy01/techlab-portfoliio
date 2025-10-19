@@ -71,7 +71,7 @@ const UserTable = () => {
                                 <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>{new Date (user.login_time).toLocaleDateString()} <span>{new Date (user.login_time).toLocaleTimeString()}</span></td>
+                                <td>{new Date (user.lastSignInTime).toLocaleDateString()} <span>{new Date (user.lastSignInTime).toLocaleTimeString()}</span></td>
                                 <td>
                                     <button
                                         onClick={() => handleDelete(user._id)}

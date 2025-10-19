@@ -14,6 +14,7 @@ import EditProjectSection from "../Components/DashBoard/TeamMemberEdit/EditProje
 import EditSevices from "../Components/DashBoard/EditServices/EditSevices";
 import AboutEdit from "../Components/DashBoard/AboutEdit/AboutEdit";
 import message from "../Components/DashBoard/Message/message";
+import UserCreate from "../Components/DashBoard/UserCreate/UserCreate";
 
 
 
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
             {
                 path:"user",
                 Component: UserTable,
+                
+            },
+            {
+                path:"createUser",
+                Component: UserCreate,
                 
             },
             {
