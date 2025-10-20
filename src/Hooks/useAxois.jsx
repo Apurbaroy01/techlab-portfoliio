@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const useAxois = () => {
     const instance = axios.create({
-        baseURL: 'http://localhost:5000'
+        baseURL: 'https://techlab-portfolio-server.vercel.app'
     });
     return instance;
 

@@ -33,7 +33,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className=" text-xl p-1">
-                    <span className='relative text-3xl font-bold text-teal-500'><TecLabs></TecLabs></span>
+                    <span className='relative lilita-one-regular text-3xl font-bold text-teal-500'><TecLabs></TecLabs></span>
                     
                 </div>
             </div>

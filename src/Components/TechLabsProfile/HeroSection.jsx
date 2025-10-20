@@ -26,7 +26,7 @@ const HeroSection = () => {
                     </p>
 
                     <h1
-                        className="lilita-one-regular text-4xl sm:text-6xl md:text-8xl mb-4 sm:mb-6 drop-shadow-lg"
+                        className="lilita-one-regular text-6xl sm:text-6xl md:text-8xl mb-4 sm:mb-6 drop-shadow-lg"
                         data-aos="zoom-in"
                     >
                         <TecLabs />
@@ -40,25 +40,26 @@ const HeroSection = () => {
                     </p>
 
                     {/* 🌟 Stats Section */}
-                    <div className="mt-6 sm:mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 backdrop-blur-2xl bg-white/10 border border-white/10 rounded-3xl p-4 sm:p-5 shadow-xl">
-                        <div className="p-4 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                            <FaStar className="text-purple-400 text-3xl sm:text-4xl mb-2 sm:mb-3" />
+                    <div className="mt-4 sm:mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 backdrop-blur-2xl bg-white/10 border border-white/10 rounded-3xl p-2 sm:p-5 shadow-xl">
+                        <div className="p-2 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                            <FaStar className="text-purple-400 text-2xl sm:text-4xl mb-1 sm:mb-3" />
                             <h2 className="text-2xl sm:text-4xl font-bold text-white">{heroData?.years}+</h2>
-                            <p className="text-xs sm:text-sm text-gray-300 mt-1">Years Of Experience</p>
+                            <p className="text-[10px] sm:text-sm text-gray-300 mt-1 text-center">Years Of Experience</p>
                         </div>
 
-                        <div className="p-4 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                            <FaCheckCircle className="text-indigo-400 text-3xl sm:text-4xl mb-2 sm:mb-3" />
+                        <div className="p-2 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                            <FaCheckCircle className="text-indigo-400 text-2xl sm:text-4xl mb-1 sm:mb-3" />
                             <h2 className="text-2xl sm:text-4xl font-bold text-white">{heroData?.projects}+</h2>
-                            <p className="text-xs sm:text-sm text-gray-300 mt-1">Projects Completed</p>
+                            <p className="text-[10px] sm:text-sm text-gray-300 mt-1 text-center">Projects Completed</p>
                         </div>
 
-                        <div className="p-4 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
-                            <FaBuilding className="text-blue-400 text-3xl sm:text-4xl mb-2 sm:mb-3" />
+                        <div className="p-2 sm:p-6 flex flex-col items-center hover:bg-white/20 transition-all duration-300 rounded-2xl">
+                            <FaBuilding className="text-blue-400 text-2xl sm:text-4xl mb-1 sm:mb-3" />
                             <h2 className="text-2xl sm:text-4xl font-bold text-white">{heroData?.companies}+</h2>
-                            <p className="text-xs sm:text-sm text-gray-300 mt-1">Trusted Companies</p>
+                            <p className="text-[10px] sm:text-sm text-gray-300 mt-1 text-center">Trusted Companies</p>
                         </div>
                     </div>
+
 
                     {/* 🎯 Buttons */}
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
