@@ -36,7 +36,7 @@ const Contact = () => {
         console.log(message);
 
         try{
-            axios.post('https://techlab-portfolio-server.vercel.app/contactMessage', message)
+            axios.post('http://localhost:5000/contactMessage', message)
             .then(res => {
                 if(res.data.insertedId){
                     Swal.fire({
