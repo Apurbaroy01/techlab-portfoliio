@@ -1,6 +1,7 @@
 import NavBar from '../Share/Navbar/NavBar';
 import { Outlet } from 'react-router-dom';
 import Footer from '../Share/Footer/Footer';
+import Dialbar from '../Share/Dialbar/Dialbar';
 
 const Layout = () => {
     return (
@@ -9,6 +10,7 @@ const Layout = () => {
             <main className="flex-grow">
                 <Outlet />
             </main>
+            <Dialbar></Dialbar>
             <Footer />
         </div>
     );
