@@ -14,7 +14,7 @@ const Home = () => {
     return (
 
         <Backround>
-            <div id='home' className='w-11/12 mx-auto'>
+            <div id='/' className='w-11/12 mx-auto'>
             
                 <Hero></Hero>
                 <About></About>
