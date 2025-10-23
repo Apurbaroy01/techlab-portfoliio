@@ -1,7 +1,7 @@
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import devoloper from "../../assets/Animotion/register.json"
+import devoloper from "../../assets/Animotion/register.json";
 
 const taglines = [
     "We Build Smart, Scalable, Stunning Experiences",
@@ -21,7 +21,7 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
                 className="uppercase tracking-[3px] text-xs sm:text-sm text-indigo-300 mb-2 sm:mb-3 text-center mt-20"
             >
-                Creative Agency
+              //  Creative Agency //
             </motion.p>
 
             <div className="max-w-7xl w-full grid md:grid-cols-2 gap-10 items-center z-10">
@@ -30,9 +30,9 @@ const Hero = () => {
                     initial={{ opacity: 0, x: -40 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
-                    className="space-y-8"
+                    className="space-y-8 text-center md:text-left flex flex-col max-md:items-center"
                 >
-                    <h1 className="text-5xl lg:text-8xl font-extrabold leading-tight text-white">
+                    <h1 className="text-5xl sm:text-5xl lg:text-8xl font-extrabold leading-tight text-white">
                         TechLabs <br />
                         <span className="bg-gradient-to-r from-indigo-500 via-purple-400 to-pink-500 bg-clip-text text-transparent">
                             Digital Agency
@@ -62,7 +62,8 @@ const Hero = () => {
                         stand out and grow in the digital world.
                     </p>
 
-                    <div className="flex flex-row items-center gap-4 mt-6">
+                    {/* Buttons */}
+                    <div className="flex flex-row items-center justify-center md:justify-start gap-4 mt-6">
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -80,13 +81,16 @@ const Hero = () => {
                         </motion.button>
                     </div>
 
-                    <div className="flex items-center gap-3 mt-8">
+                    {/* Reviews */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mt-2">
                         <div className="flex text-yellow-400 text-2xl">
                             {[...Array(5)].map((_, i) => (
                                 <FaStar key={i} />
                             ))}
                         </div>
-                        <span className="text-indigo-200 text-sm">5-Star Client Reviews</span>
+                        <span className="text-indigo-200 text-sm">
+                            5-Star Client Reviews
+                        </span>
                     </div>
                 </motion.div>
 
@@ -97,8 +101,8 @@ const Hero = () => {
                     transition={{ duration: 1 }}
                     className="relative flex justify-center md:justify-end"
                 >
-                    <div className=" p-5 w-[100%] max-w-md relative overflow-hidden">
-                        <Lottie animationData={devoloper}></Lottie>
+                    <div className="p-5 w-[100%] max-w-md relative overflow-hidden">
+                        <Lottie animationData={devoloper} />
                         <div className="absolute inset-0 bg-transparent rounded-3xl" />
                     </div>
                 </motion.div>

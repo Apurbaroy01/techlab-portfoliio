@@ -15,6 +15,7 @@ import EditSevices from "../Components/DashBoard/EditServices/EditSevices";
 import AboutEdit from "../Components/DashBoard/AboutEdit/AboutEdit";
 import message from "../Components/DashBoard/Message/message";
 import UserCreate from "../Components/DashBoard/UserCreate/UserCreate";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        Component: DashboardLayout,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
                 index: true,

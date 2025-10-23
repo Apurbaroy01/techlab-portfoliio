@@ -15,7 +15,7 @@ const Projects = () => {
     console.log(projects);
 
     return (
-        <section id="projects" className="py-20 bg-transparent dark:from-gray-900 dark:to-gray-800">
+        <section id="projects" className="py-20 bg-transparen">
             <div className="container mx-auto px-4">
                 {/* 🔹 Section Header */}
                 <div className="text-center mb-12">
@@ -32,7 +32,7 @@ const Projects = () => {
                     {projects.map((project) => (
                         <div
                             key={project._id}
-                            className="relative group bg-white/10 dark:bg-gray-900/50 rounded-2xl border border-gray-300 dark:border-gray-700 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden transition-transform transform hover:-translate-y-2 duration-300"
+                            className="relative group bg-white/10 rounded-2xl border border-gray-300  backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden transition-transform transform hover:-translate-y-2 duration-300"
                             data-aos="fade-up"
                         >
                             {/* 🔸 Project Image */}

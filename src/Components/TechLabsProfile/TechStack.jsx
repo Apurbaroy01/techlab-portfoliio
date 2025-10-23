@@ -52,7 +52,7 @@ const TechStack = () => {
         <section className="py-20 bg-transparent text-white">
             <div className="container mx-auto px-4 text-center">
                 {/* <p className="lilita-one-regular text-purple-400 mb-3">~ TECH STACK ~</p> */}
-                <h2 className="lilita-one-regular text-4xl font-bold mb-12  text-accent">~ Technologies We Use ~</h2>
+                <h2 className="lilita-one-regular text-4xl font-bold mb-12  text-accent"> Technologies We Use </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                     {techData.map((section, idx) => (

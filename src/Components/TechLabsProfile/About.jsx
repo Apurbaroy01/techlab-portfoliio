@@ -1,6 +1,7 @@
 import { FaBullseye, FaEye, FaUsers, FaClock } from "react-icons/fa";
 import TeamMember from "./TeamMember";
 import TecLabs from "./TecLabs";
+import TeamLider from "./TeamLider";
 
 const About = () => {
     // const teamMembers = [
@@ -115,39 +116,8 @@ const About = () => {
                 </div>
 
                 {/* Team Section */}
+                <TeamLider></TeamLider>
                 <TeamMember></TeamMember>
-
-                {/* <div className="mt-20" data-aos="fade-up">
-                    <h3 className="lilita-one-regular text-3xl md:text-4xl font-bold text-center mb-10 text-accent">
-                       ~ Meet Our Expert Team ~
-                    </h3>
-
-                    <section className="py-20 bg-transparent text-white">
-                        <div className="container mx-auto px-6">
-                            
-                            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                                {teamMembers.map((member, index) => (
-                                    <div
-                                        key={index}
-                                        className="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden shadow-2xl hover:scale-105 transition-transform duration-300 hover:-translate-y-2 hover:shadow-purple-800/50"
-                                        data-aos="zoom-in"
-                                        data-aos-delay={index * 100}
-                                    >
-                                        <img
-                                            src={member.image}
-                                            alt={member.name}
-                                            className="w-full h-56 object-cover"
-                                        />
-                                        <div className="p-4 text-center">
-                                            <h4 className="text-lg font-semibold text-white">{member.name}</h4>
-                                            <p className="text-sm text-gray-300">{member.role}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </section>
-                </div> */}
             </div>
         </section>
     );

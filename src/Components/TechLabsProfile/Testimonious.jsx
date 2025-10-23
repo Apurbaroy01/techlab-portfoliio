@@ -38,8 +38,8 @@ const Testimonious = () => {
   ];
 
   return (
-    <section className="py-20 bg-transparent text-white font-[Poppins]">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-white  mb-12">
+    <section className="py-16 sm:py-20 bg-transparent text-white font-[Poppins]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-10 sm:mb-12 text-white">
         What Our Clients Say
       </h2>
 
@@ -48,22 +48,38 @@ const Testimonious = () => {
         navigation
         loop
         autoplay={{ delay: 4000, disableOnInteraction: false }}
-        spaceBetween={30}
+        spaceBetween={20}
         breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
-          1024: { slidesPerView: 3 },
+          0: { slidesPerView: 1, spaceBetween: 16 },       // 📱 small mobile
+          480: { slidesPerView: 1, spaceBetween: 18 },     // mobile
+          640: { slidesPerView: 1, spaceBetween: 20 },     // tablet portrait
+          768: { slidesPerView: 2, spaceBetween: 24 },     // tablet landscape
+          1024: { slidesPerView: 3, spaceBetween: 28 },    // laptop
+          1280: { slidesPerView: 3, spaceBetween: 30 },    // desktop
         }}
-        className="max-w-6xl mx-auto px-4"
+        className="max-w-6xl mx-auto px-3 sm:px-6"
       >
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 flex flex-col items-center text-center shadow-xl hover:scale-105 transition-transform duration-500">
-              <div className="mb-4">
-                <Rating style={{ maxWidth: 160 }} value={review.rating} isDisabled />
+            <div
+              className="bg-white/10 backdrop-blur-2xl border border-white/20
+              rounded-2xl sm:rounded-3xl p-5 sm:p-8 flex flex-col justify-between
+              items-center text-center shadow-lg sm:shadow-xl
+              hover:scale-[1.03] transition-transform duration-500"
+            >
+              <div className="mb-3 sm:mb-4">
+                <Rating
+                  style={{ maxWidth: 120 }}
+                  value={review.rating}
+                  isDisabled
+                />
               </div>
-              <p className="text-gray-300 text-sm md:text-base mb-4">{review.details}</p>
-              <h3 className="text-lg md:text-xl font-semibold text-orange-400">{review.name}</h3>
+              <p className="text-gray-300 text-sm sm:text-base md:text-[15px] leading-relaxed mb-3 sm:mb-4 px-1 w-100 lg:w-full ">
+                {review.details}
+              </p>
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-orange-400">
+                {review.name}
+              </h3>
             </div>
           </SwiperSlide>
         ))}
