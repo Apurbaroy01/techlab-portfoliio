@@ -11,7 +11,7 @@ const taglines = [
 
 const Hero = () => {
     return (
-        <section className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 md:px-12 lg:px-20 font-[Poppins] overflow-hidden bg-transparent">
+        <section className="relative flex flex-col justify-center items-center px-6 md:px-12 lg:px-20 font-[Poppins] overflow-hidden bg-transparent">
             {/* subtle glow */}
             <div className="absolute inset-0 bg-transparent" />
 

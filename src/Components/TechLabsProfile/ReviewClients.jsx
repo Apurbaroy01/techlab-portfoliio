@@ -28,7 +28,7 @@ const ReviewClients = () => {
     ];
 
     return (
-        <section className="relative min-h-[90vh] bg-transparent text-white flex flex-col justify-center items-center overflow-hidden py-20 font-[Poppins]">
+        <section className="relative min-h-[90vh] bg-transparent text-white flex flex-col justify-center items-center overflow-hidden py-5 font-[Poppins]">
             {/* 🌌 Background Glow Animation */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(139,92,246,0.12),_transparent_60%)] animate-pulse"></div>
 
@@ -46,7 +46,7 @@ const ReviewClients = () => {
                 </h2>
 
                 {/* 📊 Stats Grid */}
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-8">
                     {stats.map((stat, index) => (
                         <div
                             key={index}

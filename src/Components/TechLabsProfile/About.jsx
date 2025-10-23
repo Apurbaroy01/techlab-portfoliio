@@ -47,7 +47,7 @@ const About = () => {
     //     },
     // ];
     return (
-        <section className="py-20 bg-transparent text-white" id="about">
+        <section  className="py-20 bg-transparent text-white" id="about">
             <div className="container mx-auto px-6">
                 {/* Heading */}
                 <div className="text-center mb-16" data-aos="fade-up">

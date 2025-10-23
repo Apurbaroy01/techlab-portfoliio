@@ -60,7 +60,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="py-16 px-5 sm:px-10 md:px-20 bg-transparent text-white relative overflow-hidden"
+            className="py-5 px-5 sm:px-10 md:px-20 bg-transparent text-white relative overflow-hidden"
         >
             {/* Title */}
             <h2

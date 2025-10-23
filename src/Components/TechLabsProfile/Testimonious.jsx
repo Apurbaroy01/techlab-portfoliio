@@ -53,7 +53,7 @@ const Testimonious = () => {
           0: { slidesPerView: 1, spaceBetween: 16 },       // 📱 small mobile
           480: { slidesPerView: 1, spaceBetween: 18 },     // mobile
           640: { slidesPerView: 1, spaceBetween: 20 },     // tablet portrait
-          768: { slidesPerView: 2, spaceBetween: 24 },     // tablet landscape
+          768: { slidesPerView: 1, spaceBetween: 24 },     // tablet landscape
           1024: { slidesPerView: 3, spaceBetween: 28 },    // laptop
           1280: { slidesPerView: 3, spaceBetween: 30 },    // desktop
         }}

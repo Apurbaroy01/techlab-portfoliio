@@ -14,15 +14,15 @@ const Home = () => {
     return (
 
         <Backround>
-            <div className='w-11/12 mx-auto'>
+            <div id='home' className='w-11/12 mx-auto'>
             
                 <Hero></Hero>
                 <About></About>
                 <Services></Services>
                 <TechStack></TechStack>
-                <ReviewClients></ReviewClients>
                 <Projects></Projects>
-                <Contact></Contact>
+                <ReviewClients></ReviewClients>
+                <Contact ></Contact>
             </div>
         </Backround>
 

@@ -2,13 +2,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import { FreeMode, Autoplay } from "swiper/modules";
-import { motion } from "framer-motion";
 import useAxois from "../../Hooks/useAxois";
 import { useQuery } from "@tanstack/react-query";
+
 
 const TeamMember = () => {
   const axiosInstance = useAxois();
 
+  // ✅ Fetch Team Members
   const { data: teamMembers = [] } = useQuery({
     queryKey: ["teamMembers"],
     queryFn: async () => {
@@ -17,21 +18,31 @@ const TeamMember = () => {
     },
   });
 
+  if (teamMembers.length === 0) {
+    return (
+      <div className="text-center py-20 text-white font-[Poppins]">
+        Loading team members...
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-12 sm:mt-16 w-11/12 mx-auto" data-aos="fade-up">
+    <div className="mt-2 sm:mt-2 font-[Poppins]">
       {/* ✨ Section Title */}
-      {/* <h3 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4 text-center">
+      {/* <h3
+        data-aos="fade-up"
+        className="text-3xl md:text-4xl font-extrabold text-center mb-10 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-teal-300"
+      >
         Meet Our Creative Team
       </h3> */}
 
       <section className="relative py-6 sm:py-10 space-y-10">
-        <div className="container mx-auto px-3 sm:px-6">
-          {/* 🔹 Slider 1 — Normal direction (Left-to-Right) */}
+        <div className="container mx-auto  sm:px-6">
+          {/* 🔹 Slider 1 — Left-to-Right */}
           <Swiper
             modules={[FreeMode, Autoplay]}
-            freeMode={true}
             loop={true}
-            speed={3600}
+            speed={3000}
             autoplay={{
               delay: 0,
               disableOnInteraction: false,
@@ -49,10 +60,10 @@ const TeamMember = () => {
           >
             {teamMembers.map((member, index) => (
               <SwiperSlide key={index}>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-2 sm:px-3"
+                <div
+                  data-aos="zoom-in-up"
+                  data-aos-delay={index * 100}
+                  className="sm:px-3"
                 >
                   <div
                     className="group relative bg-white/10 backdrop-blur-xl
@@ -72,10 +83,10 @@ const TeamMember = () => {
 
                     {/* 👤 Text */}
                     <div className="p-3 sm:p-4 text-center">
-                      <h4 className="text-base text-nowrap sm:text-lg font-semibold text-white">
+                      <h4 className="text-xs text-nowrap sm:text-lg font-semibold text-white">
                         {member.name}
                       </h4>
-                      <p className="text-xs text-nowrap sm:text-sm text-purple-200 mt-1 tracking-wide">
+                      <p className="text-[10px] text-nowrap sm:text-sm text-purple-200 mt-1 tracking-wide">
                         {member.role}
                       </p>
                     </div>
@@ -87,21 +98,20 @@ const TeamMember = () => {
                       transition-all duration-700"
                     ></div>
                   </div>
-                </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* 🔹 Slider 2 — Reverse direction (Right-to-Left) */}
+          {/* 🔹 Slider 2 — Right-to-Left */}
           <Swiper
             modules={[FreeMode, Autoplay]}
-            freeMode={true}
             loop={true}
-            speed={3600}
+            speed={3000}
             autoplay={{
               delay: 0,
               disableOnInteraction: false,
-              reverseDirection: true, // 👈 Reverse scroll
+              reverseDirection: true,
             }}
             breakpoints={{
               180: { slidesPerView: 2, spaceBetween: 10 },
@@ -115,10 +125,10 @@ const TeamMember = () => {
           >
             {teamMembers.map((member, index) => (
               <SwiperSlide key={`reverse-${index}`}>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="px-2 sm:px-3"
+                <div
+                  data-aos="zoom-in"
+                  data-aos-delay={index * 100}
+                  className="sm:px-3"
                 >
                   <div
                     className="group relative bg-white/10 backdrop-blur-xl
@@ -136,21 +146,21 @@ const TeamMember = () => {
                     </div>
 
                     <div className="p-3 sm:p-4 text-center">
-                      <h4 className="text-base text-nowrap sm:text-lg font-semibold text-white">
+                      <h4 className="text-xs text-nowrap sm:text-lg font-semibold text-white">
                         {member.name}
                       </h4>
-                      <p className="text-xs text-nowrap sm:text-sm text-purple-200 mt-1 tracking-wide">
+                      <p className="text-[10px] text-nowrap sm:text-sm text-purple-200 mt-1 tracking-wide">
                         {member.role}
                       </p>
                     </div>
 
                     <div
                       className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-40
-                      bg-gradient-to-r from-purple-400/40 via-pink-400/40 to-blue-400/40 blur-md
+                      bg-gradient-to-r from-blue-400/40 via-pink-400/40 to-purple-400/40 blur-md
                       transition-all duration-700"
                     ></div>
                   </div>
-                </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>

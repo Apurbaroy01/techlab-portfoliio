@@ -22,7 +22,7 @@ const Projects = () => {
                     <h2 className="lilita-one-regular text-4xl md:text-5xl font-extrabold text-accent mb-4">
                         Projects
                     </h2>
-                    <p className="text-white dark:text-gray-300 text-lg mt-3">
+                    <p className="text-white text-lg mt-3">
                         Some of my best works — creative, responsive & performance optimized.
                     </p>
                 </div>
